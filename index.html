@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashley - XatSpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=VT323&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="innovative-bg">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="video/background.mp4" type="video/mp4">
+        </video>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div id="enter-screen">
+        <div id="enter-click-area">
+            <h1 class="enter-cursive">Ashley</h1>
+            <p class="enter-watermark">CLICK TO ENTER</p>
+        </div>
+    </div>
+
+    <main id="main-layout" class="hidden-layout">
+        
+        <span class="border-line line-top"></span>
+        <span class="border-line line-right"></span>
+        <span class="border-line line-bottom"></span>
+        <span class="border-line line-left"></span>
+
+        <aside class="sidebar-gold">
+            <div class="profile-center-glow">
+                <video autoplay muted loop playsinline class="pfp-video">
+                    <source src="video/video.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+            <div class="name-container">
+                <h1 class="cursive-name">Ashley</h1>
+            </div>
+            <span class="uid-gold">ID: 376603810</span>
+
+            <nav class="nav-menu">
+                <button class="nav-btn-gold" onclick="openModal('modal-profile')">
+                    <i class="fa-solid fa-user"></i> Profile
+                </button>
+                <button class="nav-btn-gold" onclick="openModal('modal-gallery')">
+                    <i class="fa-solid fa-images"></i> Gallery 
+                </button>
+                <button class="nav-btn-gold" onclick="openModal('modal-friends')">
+                    <i class="fa-solid fa-user-group"></i> Friends
+                </button>
+                <button class="nav-btn-gold" onclick="openModal('modal-music')">
+                    <i class="fa-solid fa-music"></i> Music
+                </button>
+            </nav>
+        </aside>
+
+        <section class="content-area-gold">
+            <div class="welcome-message">
+                <h2 class="center-title-fem">Ashley</h2>
+                <div class="text-wrapper">
+                    <p id="typing-text"></p><span class="cursor">_</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="modal-profile" class="modal">
+        <div class="modal-content gold-border">
+            <span class="close-btn" onclick="closeModal('modal-profile')">&times;</span>
+            <h3>PROFILE</h3>
+            <div class="profile-details">
+                <p style="font-family: var(--font-cursive); font-size: 1.5rem; color: var(--gold);">"Sunshine mixed with a little hurricane"</p>
+                <br>
+                <ul>
+                    <li><strong>Find me:</strong> xat.com/lasvegas </li>
+                    <li><strong>Hobby:</strong> Bingos, Dormir, Hiking, Beach, Ser Toxica</li>
+                    <li><strong>Zodiac Sign:</strong> Sagittarius </li>
+                    <li><strong>My favorite food:</strong> Todo menos sushi y las verduras, ni insectos </li>
+                    <li><strong>Musical genre:</strong> Hip Hop, R&B, Banda, Salsa, Merengue y Bachata </li>
+                    <li><strong>Nationality:</strong> Mixed: Americana, Honduran, Salvadorean </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-gallery" class="modal">
+        <div class="modal-content gold-border gallery-modal-size">
+            <span class="close-btn" onclick="closeModal('modal-gallery')">&times;</span>
+            <h3>GALLERY</h3>
+            <div class="gallery-wrapper">
+                <div class="gallery-container-3d">
+                    <div class="photo-carousel-3d" id="carousel-3d-track"></div>
+                </div>
+                <button class="nav-arrow-gold prev-3d" onclick="moveGallery(-1)">‹</button>
+                <button class="nav-arrow-gold next-3d" onclick="moveGallery(1)">›</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-friends" class="modal">
+        <div class="modal-content gold-border">
+            <span class="close-btn" onclick="closeModal('modal-friends')">&times;</span>
+            <h3>FRIENDS</h3>
+             <div class="friend-list-gold">
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://xatimg.com/image/nW55YBWRcnQW.jpg" alt="Fabi">
+                    </div>
+                    <a href="https://xat.me/Fabiii9217" target="_blank" class="friend-link">Fabi</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://xatimg.com/image/Q8q139S860F5.jpg" alt="Dulcinea">
+                    </div>
+                    <a href="https://xat.me/Elvis" target="_blank" class="friend-link">Dulcinea</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://i.ibb.co/xtNYWxvd/epi3.png" alt="Epika">
+                    </div>
+                    <a href="https://xat.me/Epika" target="_blank" class="friend-link">Épika</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                 <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                         <img src="https://xatimg.com/image/user_icon.png" alt="Lovely">
+                    </div>
+                    <a href="https://xat.me/lovely" target="_blank" class="friend-link">Lovely</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://xatimg.com/image/jxsxnCn2s8Q1.jpg" alt="Chapux">
+                    </div>
+                    <a href="https://xat.me/iChapuLinX" target="_blank" class="friend-link">Chapux</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://xatimg.com/image/o6gySJoQm3bX.png" alt="Rayko">
+                    </div>
+                    <a href="https://xat.me/Rayko" target="_blank" class="friend-link">Rayko</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://i.ibb.co/nNDRYvN4/donneww.png" alt="DonTupa">
+                    </div>
+                    <a href="https://xat.me/xDonTupa" target="_blank" class="friend-link">Don Tupa</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/DfJAMCxt7ERl.png" alt="Jazy">
+                    </div>
+                    <a href="https://xat.me/Jazy" target="_blank" class="friend-link">Jazy</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://u.cubeupload.com/nahuel2410/nahuuuuuuu.jpg" alt="Nahu">
+                    </div>
+                    <a href="https://xat.me/nahueLEzze" target="_blank" class="friend-link">Nahu</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://xat.com/web_gear/chat/av/945.png" alt="Wen">
+                    </div>
+                    <a href="https://xat.me/Santademonia" target="_blank" class="friend-link">Wen</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://i.ibb.co/5xtkQkTq/rappimrv.png" alt="Marvin">
+                    </div>
+                    <a href="https://xat.me/Marv" target="_blank" class="friend-link">Marvin</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://xatimg.com/image/9lsdp4ZaqwpE.gif" alt="Emilio">
+                    </div>
+                    <a href="https://xat.me/iVeneccooo" target="_blank" class="friend-link">Emilio</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+                <div class="friend-item-gold">
+                    <div class="friend-img-box">
+                        <img src="https://xatimg.com/image/x2eQDES0dreY.jpg" alt="Peki">
+                    </div>
+                    <a href="https://xat.me/TeChaiLatte" target="_blank" class="friend-link">Peki</a>
+                    <div class="friend-status"><span class="dot-online"></span> ONLINE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-music" class="modal">
+        <div class="modal-content gold-border">
+            <span class="close-btn" onclick="closeModal('modal-music')">&times;</span>
+            <h3>MUSIC</h3>
+             <div class="music-player-gold">
+                <div class="vinyl-record-gold" id="vinyl">
+                    <i class="fas fa-compact-disc"></i>
+                </div>
+                <div class="song-info-gold">
+                    <h4 id="song-title">Select Track</h4>
+                    <p id="song-artist">...</p>
+                    <div class="controls-gold">
+                        <button onclick="prevSong()"><i class="fas fa-backward"></i></button>
+                        <button onclick="togglePlay()"><i class="fas fa-play" id="play-icon"></i></button>
+                        <button onclick="nextSong()"><i class="fas fa-forward"></i></button>
+                    </div>
+                    <div class="fake-bar-gold"><div class="fill-gold" id="progress-bar"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audio" loop></audio>
+
+    <div class="watermark-ghost">
+        <a href="https://xat.me/Rayko" target="_blank">Rayko Design</a>
+        <span>© Derechos Reservados 2026</span>
+    </div>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

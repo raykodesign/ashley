@@ -1,0 +1,430 @@
+/* --- VARIABLES --- */
+:root {
+    /* Paleta Dorada Premium */
+    --gold: #d4af37;
+    --gold-light: #f9f1cc;
+    --gold-dark: #8a6e2f;
+    --coffee: #6f4e37;
+    --coffee-dark: #2c221a;
+    --black-base: #050505;
+    /* CAMBIO: Opacidad reducida a 0.6 para efecto vidrio real */
+    --black-glass: rgba(15, 12, 10, 0.6); 
+    --font-tech: 'VT323', monospace;
+    --font-clean: 'Montserrat', sans-serif;
+    --font-cursive: 'Great Vibes', cursive;
+}
+
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+} 
+
+body {
+    background-color: var(--black-base);
+    color: #fff;
+    font-family: var(--font-clean);
+    height: 100vh;
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: default; 
+}
+
+/* --- FONDO VIDEO --- */
+.innovative-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -2; overflow: hidden;
+}
+#bg-video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: blur(1px) sepia(40%);
+    transform: scale(1.1);
+}
+.bg-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 5, 0, 0.7);
+}
+
+/* --- EFECTO BRILLOS DORADOS (Mouse) --- */
+.golden-sparkle {
+    position: absolute; 
+    pointer-events: none; 
+    z-index: 9999;
+    width: 6px; height: 6px;
+    background: radial-gradient(circle, #fff 10%, var(--gold) 60%, transparent 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--gold), 0 0 15px #fff;
+    animation: sparkleFade 0.8s linear forwards;
+}
+
+@keyframes sparkleFade {
+    0% { transform: scale(1) translate(0, 0); opacity: 1; }
+    100% { transform: scale(0.2) translate(10px, 20px); opacity: 0; }
+}
+
+/* --- PANTALLA DE CARGA --- */
+#enter-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    display: flex; justify-content: center; align-items: center;
+    z-index: 2000; transition: opacity 1s ease;
+    cursor: pointer; 
+}
+
+#enter-click-area {
+    text-align: center;
+    padding: 40px;
+    transition: transform 0.4s ease;
+    pointer-events: none; 
+}
+#enter-screen:hover #enter-click-area { 
+    transform: scale(1.05); 
+}
+
+.enter-cursive {
+    font-family: var(--font-cursive);
+    font-size: 5rem;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), #fff, var(--gold), var(--gold-dark));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    animation: shimmerGold 3s infinite linear;
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
+}
+
+.enter-watermark {
+    font-family: var(--font-clean);
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    color: rgba(212, 175, 55, 0.5);
+    margin-top: -5px;
+    text-transform: uppercase;
+    font-weight: 300;
+    animation: pulseText 2s infinite alternate;
+}
+
+@keyframes shimmerGold {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+@keyframes pulseText {
+    0% { opacity: 0.3; text-shadow: 0 0 0 transparent; }
+    100% { opacity: 0.8; text-shadow: 0 0 10px var(--gold); }
+}
+
+/* --- LAYOUT PRINCIPAL (EFECTO VIDRIO MEJORADO) --- */
+#main-layout {
+    display: flex;
+    width: 900px; max-width: 95%; height: 600px; max-height: 90vh;
+    
+    /* CAMBIO: Usamos la variable más transparente */
+    background: var(--black-glass);
+    
+    position: relative;
+    border-radius: 40px; 
+    
+    /* CAMBIO: Más blur para efecto vidrio frosted */
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* CAMBIO: Borde sutil para resaltar el cristal */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    
+    animation: breathingGlow 4s infinite alternate ease-in-out;
+    overflow: hidden; 
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+@keyframes breathingGlow {
+    0% { box-shadow: 0 0 30px rgba(111, 78, 55, 0.3), inset 0 0 20px rgba(0,0,0,0.5); border-color: rgba(212, 175, 55, 0.2); }
+    100% { box-shadow: 0 0 70px rgba(212, 175, 55, 0.25), inset 0 0 40px rgba(0,0,0,0.3); border-color: rgba(212, 175, 55, 0.5); }
+}
+
+.hidden-layout { opacity: 0; transform: scale(0.9) translateY(50px); pointer-events: none; }
+
+/* Decoraciones */
+.border-line { position: absolute; display: block; z-index: 10; pointer-events: none; opacity: 0.6; }
+.line-top { top: 0; left: 20px; right: 20px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: flashHorizontal 3s infinite; }
+.line-bottom { bottom: 0; left: 20px; right: 20px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: flashHorizontal 3s infinite reverse; }
+
+@keyframes flashHorizontal { 0% { opacity: 0; transform: scaleX(0); } 50% { opacity: 1; transform: scaleX(1); } 100% { opacity: 0; transform: scaleX(0); } }
+
+/* --- BARRA LATERAL (SEMITRANSPARENTE PARA CONTINUAR EL VIDRIO) --- */
+.sidebar-gold {
+    width: 300px; flex-shrink: 0; 
+    /* CAMBIO: Fondo semitransparente para ver a través */
+    background: rgba(20, 15, 10, 0.4); 
+    padding: 30px 20px; display: flex; flex-direction: column; align-items: center;
+    border-right: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.profile-center-glow { width: 120px; height: 120px; margin-bottom: 20px; flex-shrink: 0; }
+
+.pfp-video {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover; 
+    border: 3px solid var(--gold); 
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), 0 0 10px var(--gold-dark);
+    animation: float 4s ease-in-out infinite;
+}
+
+.name-container { display: flex; justify-content: center; width: 100%; margin-bottom: 5px; }
+.cursive-name {
+    font-family: var(--font-cursive);
+    font-size: 3.5rem;
+    background: linear-gradient(180deg, var(--gold-light) 40%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+    text-align: center; margin: 0;
+    padding-right: 20px; margin-right: -10px; 
+    line-height: 1.2;
+}
+
+.uid-gold { font-family: var(--font-tech); color: #998877; letter-spacing: 2px; font-size: 1rem; margin-bottom: 30px; }
+
+/* --- BOTONES NAV --- */
+.nav-menu { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+
+@keyframes slideInLeftBtns {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.nav-btn-gold {
+    width: 100%; padding: 15px 20px;
+    /* Botones más oscuros para contraste sobre el vidrio */
+    background: linear-gradient(90deg, rgba(20, 16, 14, 0.8), rgba(44, 34, 26, 0.8)); 
+    border: 1px solid var(--coffee);
+    border-radius: 8px; 
+    color: var(--gold); 
+    text-align: left;
+    font-family: var(--font-clean); font-weight: 700; 
+    transition: all 0.4s ease;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    text-transform: uppercase; letter-spacing: 1px;
+    opacity: 0; 
+    cursor: pointer;
+}
+
+.nav-btn-gold:hover {
+    background: linear-gradient(90deg, var(--coffee), var(--gold)); 
+    color: #fff; 
+    border-color: var(--gold-light);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+.nav-btn-gold:hover i { color: #fff; }
+
+.animate-buttons .nav-btn-gold {
+    animation: slideInLeftBtns 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+.nav-btn-gold:nth-child(1) { animation-delay: 0.2s; }
+.nav-btn-gold:nth-child(2) { animation-delay: 0.4s; }
+.nav-btn-gold:nth-child(3) { animation-delay: 0.6s; }
+.nav-btn-gold:nth-child(4) { animation-delay: 0.8s; }
+
+
+/* --- CONTENIDO --- */
+.content-area-gold {
+    flex-grow: 1; display: flex; justify-content: center; align-items: center;
+    padding: 40px; position: relative;
+    /* Sombra interna sutil */
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+}
+
+.center-title-fem { 
+    font-family: var(--font-cursive); 
+    font-weight: 400; font-size: 5rem; color: var(--gold); 
+    margin-bottom: 5px; line-height: 1;
+    text-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+    padding-right: 15px;
+}
+
+.text-wrapper { max-width: 550px; line-height: 1.6; }
+#typing-text {
+    font-family: var(--font-cursive); 
+    font-size: 2.2rem; 
+    color: #e0e0e0; 
+    line-height: 1.3;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+.cursor { color: var(--gold); animation: blink 1s infinite; font-weight: bold; font-size: 2rem; }
+
+/* --- MODALES --- */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; pointer-events: none; opacity: 0; transition: opacity 0.4s;
+    /* Modal con vidrio muy desenfocado */
+    backdrop-filter: blur(8px); background: rgba(0,0,0,0.6);
+}
+.modal.active { pointer-events: auto; opacity: 1; }
+
+.modal-content.gold-border {
+    background: rgba(11, 9, 8, 0.9); /* Casi sólido para legibilidad */
+    border: 1px solid var(--gold);
+    padding: 35px; width: 90%; max-width: 650px; position: relative;
+    box-shadow: 0 0 60px rgba(111, 78, 55, 0.3);
+    border-radius: 20px; 
+    transform: scale(0.95) translateY(20px); transition: 0.4s;
+}
+.modal.active .modal-content { transform: scale(1) translateY(0); }
+.close-btn { position: absolute; top: 20px; right: 25px; font-size: 1.8rem; color: #555; cursor: pointer; z-index: 30;}
+.close-btn:hover { color: var(--gold); transform: rotate(90deg); }
+.modal h3 { font-family: var(--font-clean); font-weight: 700; color: var(--gold); border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 25px; letter-spacing: 2px; }
+
+/* --- LISTA DE AMIGOS --- */
+.friend-list-gold {
+    display: flex; flex-direction: column; gap: 10px;
+    max-height: 400px; overflow-y: auto; padding-right: 10px;
+}
+.friend-item-gold {
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
+    padding: 10px; 
+    color: #ccc; 
+    display: flex; align-items: center; gap: 15px; 
+    font-size: 1rem;
+    transition: background 0.3s;
+    border-radius: 10px;
+}
+.friend-item-gold:hover { background: rgba(212, 175, 55, 0.05); }
+
+.friend-img-box {
+    width: 50px; height: 50px; border-radius: 50%;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    overflow: hidden; flex-shrink: 0;
+}
+.friend-img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+.friend-link {
+    flex-grow: 1; font-weight: 600; font-size: 1.1rem;
+    color: #e0e0e0; text-decoration: none;
+    font-family: var(--font-clean); transition: color 0.3s;
+}
+.friend-link:hover { color: var(--gold); text-shadow: 0 0 5px var(--gold); }
+
+.friend-status {
+    color: var(--gold); font-family: var(--font-tech); font-size: 1rem;
+    display: flex; align-items: center; gap: 5px;
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+.dot-online {
+    width: 8px; height: 8px; background: var(--gold);
+    border-radius: 50%; display: inline-block;
+    box-shadow: 0 0 5px var(--gold);
+    animation: blink 1.5s infinite;
+}
+
+/* --- GALERIA 3D --- */
+.gallery-wrapper { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; }
+.gallery-container-3d { 
+    height: 400px; position: relative; perspective: 1200px; 
+    display: flex; align-items: center; justify-content: flex-start; 
+    width: 100%; overflow: hidden; 
+}
+.photo-carousel-3d { 
+    display: flex; position: absolute; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
+    transform-style: preserve-3d; align-items: center; height: 100%; left: 0; 
+}
+.card-3d-gold {
+    width: 240px; height: 320px; margin: 0 20px; flex-shrink: 0;
+    background: #000; 
+    border: 2px solid #333; border-radius: 10px; overflow: hidden;
+    transition: all 0.5s; opacity: 0.3; transform: scale(0.8) rotateY(25deg);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8); cursor: pointer;
+}
+.card-3d-gold.active {
+    opacity: 1; transform: scale(1.1) rotateY(0deg) translateZ(30px);
+    border-color: var(--gold); box-shadow: 0 0 40px rgba(212, 175, 55, 0.3); z-index: 10;
+}
+.nav-arrow-gold {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.6); color: var(--gold); border: 1px solid var(--gold);
+    width: 40px; height: 40px; border-radius: 50%; font-size: 1.5rem; cursor: pointer;
+    z-index: 20; transition: 0.3s;
+}
+.nav-arrow-gold:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px var(--gold); }
+.prev-3d { left: -15px; } .next-3d { right: -15px; }
+
+/* REPRODUCTOR */
+.music-player-gold { display: flex; align-items: center; gap: 30px; }
+.vinyl-record-gold {
+    width: 90px; height: 90px; border-radius: 50%; background: #0a0a0a;
+    border: 2px solid var(--gold); display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); color: var(--gold); font-size: 1.8rem;
+    flex-shrink: 0;
+}
+.vinyl-spin { animation: spin 4s linear infinite; }
+.song-info-gold { width: 100%; }
+.song-info-gold h4 { color: var(--gold); margin-bottom: 8px; }
+.controls-gold button { background: none; border: none; color: #fff; cursor: pointer; font-size: 1.3rem; margin-right: 15px;}
+.controls-gold button:hover { color: var(--gold); transform: scale(1.1); text-shadow: 0 0 10px var(--gold); }
+.fill-gold { width: 0%; height: 100%; background: var(--gold); }
+.fake-bar-gold { width: 100%; height: 4px; background: #333; margin-top: 10px; border-radius: 2px; }
+
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 950px) {
+    #main-layout {
+        flex-direction: column; width: 95%; height: auto; max-height: 90vh;
+        border-radius: 20px; overflow-y: auto; overflow-x: hidden;
+    }
+    .sidebar-gold { width: 100%; padding: 20px; border-right: none; border-bottom: 1px solid rgba(111, 78, 55, 0.3); flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 20px; background: rgba(20, 15, 10, 0.8); }
+    .profile-center-glow { width: 80px; height: 80px; margin: 0; }
+    .nav-menu { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    .nav-btn-gold { width: auto; font-size: 0.9rem; padding: 10px 15px; opacity: 1; animation: none !important;}
+    
+    .content-area-gold { padding: 30px 15px; min-height: auto; }
+    .center-title-fem { font-size: 3.5rem; }
+    #typing-text { font-size: 1.5rem; }
+    
+    .card-3d-gold { width: 160px; height: 220px; margin: 0 10px; }
+    .gallery-container-3d { height: 300px; }
+    .nav-arrow-gold { width: 35px; height: 35px; font-size: 1.2rem; }
+    
+    .music-player-gold { flex-direction: column; text-align: center; gap: 15px; }
+    .controls-gold { justify-content: center; display: flex; }
+}
+
+@media (max-width: 480px) {
+    .cursive-name { font-size: 2.5rem; }
+    .center-title-fem { font-size: 2.8rem; }
+    .sidebar-gold { padding: 15px; }
+    .nav-btn-gold { width: 45%; justify-content: center; }
+    .card-3d-gold { width: 140px; height: 190px; margin: 0 5px; }
+    .prev-3d { left: -5px; } .next-3d { right: -5px; }
+    .enter-cursive { font-size: 3.5rem; }
+}
+
+/* --- MARCA DE AGUA ESTILO FANTASMA --- */
+.watermark-ghost {
+    position: fixed;
+    bottom: 10px;       
+    left: 0; 
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-clean, sans-serif); 
+    font-size: 10px;    
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5); 
+    opacity: 0.3;       
+    z-index: 9999;
+    pointer-events: none; 
+    transition: opacity 0.5s ease;
+}
+.watermark-ghost:hover { opacity: 1; }
+.watermark-ghost a {
+    color: #fff;        
+    text-decoration: none;
+    font-weight: 700;
+    pointer-events: auto; 
+    margin-right: 5px;
+}
+.watermark-ghost span { font-weight: 300; }
