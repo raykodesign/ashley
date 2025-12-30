@@ -7,7 +7,6 @@
     --coffee: #6f4e37;
     --coffee-dark: #2c221a;
     --black-base: #050505;
-    /* CAMBIO: Opacidad reducida a 0.6 para efecto vidrio real */
     --black-glass: rgba(15, 12, 10, 0.6); 
     --font-tech: 'VT323', monospace;
     --font-clean: 'Montserrat', sans-serif;
@@ -115,24 +114,16 @@ body {
     100% { opacity: 0.8; text-shadow: 0 0 10px var(--gold); }
 }
 
-/* --- LAYOUT PRINCIPAL (EFECTO VIDRIO MEJORADO) --- */
+/* --- LAYOUT PRINCIPAL --- */
 #main-layout {
     display: flex;
     width: 900px; max-width: 95%; height: 600px; max-height: 90vh;
-    
-    /* CAMBIO: Usamos la variable más transparente */
     background: var(--black-glass);
-    
     position: relative;
     border-radius: 40px; 
-    
-    /* CAMBIO: Más blur para efecto vidrio frosted */
     backdrop-filter: blur(20px); 
     -webkit-backdrop-filter: blur(20px);
-    
-    /* CAMBIO: Borde sutil para resaltar el cristal */
     border: 1px solid rgba(255, 255, 255, 0.1); 
-    
     animation: breathingGlow 4s infinite alternate ease-in-out;
     overflow: hidden; 
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -145,17 +136,15 @@ body {
 
 .hidden-layout { opacity: 0; transform: scale(0.9) translateY(50px); pointer-events: none; }
 
-/* Decoraciones */
 .border-line { position: absolute; display: block; z-index: 10; pointer-events: none; opacity: 0.6; }
 .line-top { top: 0; left: 20px; right: 20px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: flashHorizontal 3s infinite; }
 .line-bottom { bottom: 0; left: 20px; right: 20px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: flashHorizontal 3s infinite reverse; }
 
 @keyframes flashHorizontal { 0% { opacity: 0; transform: scaleX(0); } 50% { opacity: 1; transform: scaleX(1); } 100% { opacity: 0; transform: scaleX(0); } }
 
-/* --- BARRA LATERAL (SEMITRANSPARENTE PARA CONTINUAR EL VIDRIO) --- */
+/* --- BARRA LATERAL --- */
 .sidebar-gold {
     width: 300px; flex-shrink: 0; 
-    /* CAMBIO: Fondo semitransparente para ver a través */
     background: rgba(20, 15, 10, 0.4); 
     padding: 30px 20px; display: flex; flex-direction: column; align-items: center;
     border-right: 1px solid rgba(212, 175, 55, 0.2);
@@ -195,7 +184,6 @@ body {
 
 .nav-btn-gold {
     width: 100%; padding: 15px 20px;
-    /* Botones más oscuros para contraste sobre el vidrio */
     background: linear-gradient(90deg, rgba(20, 16, 14, 0.8), rgba(44, 34, 26, 0.8)); 
     border: 1px solid var(--coffee);
     border-radius: 8px; 
@@ -231,7 +219,6 @@ body {
 .content-area-gold {
     flex-grow: 1; display: flex; justify-content: center; align-items: center;
     padding: 40px; position: relative;
-    /* Sombra interna sutil */
     box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
 }
 
@@ -258,13 +245,12 @@ body {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     display: flex; justify-content: center; align-items: center;
     z-index: 1000; pointer-events: none; opacity: 0; transition: opacity 0.4s;
-    /* Modal con vidrio muy desenfocado */
     backdrop-filter: blur(8px); background: rgba(0,0,0,0.6);
 }
 .modal.active { pointer-events: auto; opacity: 1; }
 
 .modal-content.gold-border {
-    background: rgba(11, 9, 8, 0.9); /* Casi sólido para legibilidad */
+    background: rgba(11, 9, 8, 0.95);
     border: 1px solid var(--gold);
     padding: 35px; width: 90%; max-width: 650px; position: relative;
     box-shadow: 0 0 60px rgba(111, 78, 55, 0.3);
@@ -275,6 +261,15 @@ body {
 .close-btn { position: absolute; top: 20px; right: 25px; font-size: 1.8rem; color: #555; cursor: pointer; z-index: 30;}
 .close-btn:hover { color: var(--gold); transform: rotate(90deg); }
 .modal h3 { font-family: var(--font-clean); font-weight: 700; color: var(--gold); border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 25px; letter-spacing: 2px; }
+
+/* --- MODAL GALERÍA --- */
+.modal-content.gallery-modal-size {
+    overflow-y: hidden; /* Ocultamos el scroll vertical del modal para que solo se vea la rueda 3D */
+    max-height: 90vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* --- LISTA DE AMIGOS --- */
 .friend-list-gold {
@@ -320,7 +315,7 @@ body {
 }
 
 /* --- GALERIA 3D --- */
-.gallery-wrapper { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; }
+.gallery-wrapper { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 20px;}
 .gallery-container-3d { 
     height: 400px; position: relative; perspective: 1200px; 
     display: flex; align-items: center; justify-content: flex-start; 
@@ -370,6 +365,67 @@ body {
 @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
+/* --- NUEVOS ESTILOS PARA LA TARJETA GIF ESPECIAL --- */
+.gif-card-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* Alinea el contenido al centro verticalmente */
+    justify-content: center; 
+    align-items: center;
+    background: #000; /* Fondo negro puro para que resalte el GIF */
+    padding: 15px; /* Un poco más de espacio interno */
+}
+
+.gallery-card-gif {
+    width: 100%;
+    /* Altura máxima para dejar espacio al texto abajo. Ajusta si es necesario. */
+    max-height: 180px; 
+    /* LA CLAVE: 'contain' asegura que el GIF se vea completo sin recortarse */
+    object-fit: contain; 
+    border: 1px solid var(--gold);
+    margin-bottom: 10px;
+    /* Sombra suave para darle profundidad */
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.gif-text-content {
+    text-align: center;
+    width: 100%;
+}
+
+.card-gif-title {
+    font-family: var(--font-cursive);
+    color: var(--gold);
+    /* Un poco más pequeño para asegurar que quepa todo */
+    font-size: 1.6rem; 
+    margin: 5px 0;
+    line-height: 1;
+    text-shadow: 0 0 5px var(--gold-dark);
+}
+
+.card-gif-quote {
+    font-family: var(--font-clean);
+    font-size: 0.6rem; /* Letra pequeña para la frase larga */
+    color: #ccc;
+    font-style: italic;
+    line-height: 1.2;
+    opacity: 0.9;
+}
+
+/* AJUSTE RESPONSIVO PARA MÓVILES (Agrégalo dentro del @media (max-width: 950px) existente) */
+@media (max-width: 950px) {
+    /* ... tus otros estilos responsivos ... */
+
+    /* Agrega esto al final del bloque media query */
+    .gallery-card-gif {
+        max-height: 120px; /* Menos altura en móviles porque la tarjeta es más chica */
+    }
+    .card-gif-title { font-size: 1.4rem; }
+    .card-gif-quote { font-size: 0.55rem; }
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 950px) {
     #main-layout {
@@ -391,6 +447,10 @@ body {
     
     .music-player-gold { flex-direction: column; text-align: center; gap: 15px; }
     .controls-gold { justify-content: center; display: flex; }
+
+    /* Ajuste para la tarjeta de video en movil */
+    .card-video-title { font-size: 1.4rem; }
+    .card-video-quote { font-size: 0.55rem; }
 }
 
 @media (max-width: 480px) {
@@ -403,7 +463,6 @@ body {
     .enter-cursive { font-size: 3.5rem; }
 }
 
-/* --- MARCA DE AGUA ESTILO FANTASMA --- */
 .watermark-ghost {
     position: fixed;
     bottom: 10px;       
