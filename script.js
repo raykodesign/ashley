@@ -88,12 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- GALERÍA 3D (MEZCLA DE VIDEO Y FOTOS) ---
     const galleryItems = [
         // CAMBIO AQUÍ: Tipo 'special-gif' y la ruta al archivo .gif
-        { 
-            type: 'special-gif', 
-            src: 'video/video2.gif',  // Asegúrate de que este archivo exista
-            title: 'Mi amor', 
-            quote: '"Love is so powerful that it can enter through a closed door and steal all of the contents of a precious heart within a moment."' 
-        },
+    
         // Las demás fotos siguen igual...
         { type: 'image', src: "https://xatimg.com/image/ZhKqFHHHSZvX.jpg" },
         { type: 'image', src: "https://xatimg.com/image/enjUD4tT7hwe.jpg" },
